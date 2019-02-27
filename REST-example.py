@@ -6,7 +6,7 @@ import base64
 
 storage_account_name = '<ACCOUNT_NAME>'
 storage_account_key = '<ACCOUNT_KEY>'
-api_version = '2016-05-31'
+api_version = '2018-03-28'
 request_time = datetime.datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
 
 string_params = {
