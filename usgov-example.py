@@ -43,7 +43,8 @@ from azure.storage.blob import BlockBlobService, PublicAccess
 def run_sample():
     try:
         # Create the BlockBlockService that is used to call the Blob service for the storage account
-        block_blob_service = BlockBlobService(account_name='ACCOUNT_NAME',sas_token="SAS_KEY" )
+        #block_blob_service = BlockBlobService(account_name='<ACCOUNT_NAME>',sas_token="<SAS_TOKEN>" )
+        block_blob_service = BlockBlobService(account_name='<ACCOUNT>', sas_token="<SAS_KEY>", endpoint_suffix="core.usgovcloudapi.net") 
 
        # block_blob_service.retry =  ExponentialRetry(initial_backoff=30, increment_base=2, max_attempts=20).retry
         # Create a container called 'quickstartblobs'.
