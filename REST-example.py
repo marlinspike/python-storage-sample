@@ -1,13 +1,25 @@
 import requests
-import datetime
+import json
+import sys
 import hmac
 import hashlib
 import base64
+from datetime import datetime
 
-storage_account_name = '<ACCOUNT_NAME>'
-storage_account_key = '<ACCOUNT_KEY>'
+credsFile = './creds.json'
+try:
+    with open(credsFile) as cred_data:
+        credentials = json.load(cred_data)
+        storage_account_name = credentials['storage_account_name']
+        storage_account_key = credentials['storage_account_key']
+except Exception as e:
+    msg = 'There was an issue reading in the credentials file ' + credsFile
+    print(msg)
+    print('[ERROR] ' + str(e))
+    sys.exit(200)
+
 api_version = '2018-03-28'
-request_time = datetime.datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
+request_time = datetime.utcnow().strftime('%a, %d %b %Y %H:%M:%S GMT')
 
 string_params = {
     'verb': 'GET',
