@@ -10,6 +10,7 @@ credsFile = './creds.json'
 try:
     with open(credsFile) as cred_data:
         credentials = json.load(cred_data)
+        storage_service_endpoint = credentials['storage_service_endpoint']
         storage_account_name = credentials['storage_account_name']
         storage_account_key = credentials['storage_account_key']
 except Exception as e:
@@ -61,8 +62,9 @@ headers = {
     'Authorization' : ('SharedKey ' + storage_account_name + ':' + signed_string)
 }
 
-url = ('https://' + storage_account_name + '.file.core.windows.net/?comp=list')
-
+#blob.core.windows.net
+url = (f'https://{storage_account_name}.{storage_service_endpoint}/?comp=list')
+print(url)
 r = requests.get(url, headers = headers)
 
 print(r.content)
